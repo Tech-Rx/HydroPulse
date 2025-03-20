@@ -1,0 +1,12 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource prefix="/">
+        <file>images/myicon.ico</file>
+        <file>images/start.png</file>
+        <file>images/stop.png</file>
+        <file>images/gear.png</file>
+        <file>images/start_disabled.png</file>
+        <file>images/stop_disabled.png</file>
+        <file>images/gear_disabled.png</file>
+    </qresource>
+</RCC>
