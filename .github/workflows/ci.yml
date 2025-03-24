@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      QT_QPA_PLATFORM: offscreen  # Use offscreen platform for Qt
+      LIBGL_ALWAYS_INDIRECT: 0
+      QT_DEBUG_PLUGINS: 1  # Enable Qt plugin debugging
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libx11-xcb1 \
+            libxcb-icccm4 \
+            libxcb-image0 \
+            libxcb-keysyms1 \
+            libxcb-render-util0 \
+            libxcb-xinerama0 \
+            libxcb-xfixes0 \
+            libxkbcommon-x11-0 \
+            libxcb-sync1 \
+            libxcb-shm0 \
+            libgl1 \
+            libglu1-mesa \
+            mesa-utils \
+            xvfb\
+            xserver-xorg-video-dummy
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.12.6'
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install flake8 pytest pytest-qt
+
+      - name: Run Linting
+        run: flake8 --exclude=tests/*,resources/*
+
+      - name: Run Tests with Xvfb
+        run: xvfb-run --auto-servernum pytest -v
