@@ -44,18 +44,7 @@ from config import (
     POLL_INTERVAL_MS,
 )
 from save_tasks import SaveTask
-# main.py is in src/hydro_pulse, so two levels up is the repository root.
-sys.path.insert(
-    0,
-    os.path.abspath(
-        os.path.join(
-            os.path.dirname(__file__),
-            "..",
-            ".."
-        )
-    )
-)
-from resources import resources_rc  # noqa: F401, E402
+from resources import resources_rc  # noqa: F401
 
 
 # Configure pymodbus logger to suppress warnings
