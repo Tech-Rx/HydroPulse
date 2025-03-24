@@ -13,7 +13,6 @@ Usage:
 
 # Standard library imports
 import os
-import sys
 from collections import deque
 from datetime import datetime
 import logging
