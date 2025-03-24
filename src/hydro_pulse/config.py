@@ -1,7 +1,7 @@
 """
 config.py
 
-This module defines the default sensor configuration for HydroPulse and provides
+This module defines the default sensor configuration and provides
 helper functions to save and load the sensor configuration using QSettings.
 On Windows, QSettings stores configuration data in the registry.
 """
@@ -79,7 +79,7 @@ POLL_INTERVAL_MS = 100  # Polling interval in milliseconds
 Y_AXIS_MAX = 1150
 TIME_WINDOW_SEC = 300  # 5 minutes
 
-# Define a maximum number of points to store corresponding to a 5-minute window.
+# Define a maximum number of points to store corresponding to a 5-mi window.
 MAX_POINTS = int(TIME_WINDOW_SEC * 1000 / POLL_INTERVAL_MS)
 
 
@@ -98,16 +98,19 @@ def validate_config(config: List[Dict[str, Any]]) -> bool:
     return all(required_keys.issubset(sensor.keys()) for sensor in config)
 
 
-def load_sensor_config(default_config: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+def load_sensor_config(
+    default_config: List[Dict[str, Any]]
+) -> List[Dict[str, Any]]:
     """
     Load the sensor configuration from the system registry using QSettings.
 
     Args:
         default_config: The default sensor configuration to use if no
-                        configuration is stored or if there is an error during loading.
+        configuration is stored or if there is an error during loading.
 
     Returns:
-        The stored sensor configuration if available and valid, otherwise a copy of the default configuration.
+        The stored sensor configuration if available and valid,
+        otherwise a copy of the def configuration.
     """
     with CONFIG_LOCK:
         settings = QSettings(ORGANIZATION_NAME, APPLICATION_NAME)
