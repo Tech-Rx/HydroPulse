@@ -49,7 +49,7 @@ jobs:
           pip install flake8 pytest pytest-qt
 
       - name: Run Linting
-        run: flake8 --exclude=tests/*,resources/*
+        run: flake8 --exclude=tests/*,resources/*,src/hydro_pulse/resources_rc.py
 
       - name: Run Tests with Xvfb
         run: xvfb-run --auto-servernum pytest -v
