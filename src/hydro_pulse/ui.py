@@ -43,7 +43,7 @@ from config import (
     POLL_INTERVAL_MS,
 )
 from save_tasks import SaveTask
-from resources import resources_rc  # noqa: F401
+import resources_rc  # noqa: F401
 
 
 # Configure pymodbus logger to suppress warnings
