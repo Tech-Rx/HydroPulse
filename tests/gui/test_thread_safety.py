@@ -1,6 +1,6 @@
 from PyQt5 import QtCore
 import pytest
-pytest.skip("Skipping file saving tests due to hang", allow_module_level=True)
+
 @pytest.mark.gui
 # test_thread_safety.py
 def test_concurrent_data_and_config_updates(sensor_plotter, qtbot):
